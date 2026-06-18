@@ -759,27 +759,50 @@ footer {
   position: fixed; inset: 0; z-index: 9000;
   background: var(--obsidian);
   display: flex; flex-direction: column; align-items: center; justify-content: center;
-  gap: 2rem; transition: opacity 0.8s var(--transition), transform 0.8s var(--transition);
+  gap: 1.5rem; transition: opacity 0.8s var(--transition), transform 0.8s var(--transition);
+  padding: 2rem;
 }
 #splash.hidden { opacity: 0; pointer-events: none; transform: translateY(-20px); }
-.splash-logo {
-  font-family: 'Playfair Display', serif;
-  font-size: 3.5rem; font-weight: 700; letter-spacing: 0.18em;
-  color: var(--ivory); text-align: center;
+
+.splash-logo-wrap {
+  display: flex; flex-direction: column; align-items: center; gap: 0.2rem;
+  animation: splashFadeUp 0.8s 0.2s var(--transition) both;
 }
-.splash-logo span { color: var(--wave); }
+@keyframes splashFadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+
+.splash-line1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 10vw, 3.2rem);
+  font-weight: 700; letter-spacing: 0.12em;
+  color: var(--ivory); line-height: 1; white-space: nowrap;
+}
+.splash-line1 .splash-accent { color: var(--champagne); font-style: italic; }
+.splash-line2 {
+  font-family: 'Jost', sans-serif;
+  font-size: clamp(1rem, 5vw, 1.6rem);
+  font-weight: 200; letter-spacing: 0.55em;
+  color: var(--ivory); opacity: 0.85; line-height: 1;
+  text-transform: uppercase;
+}
+.splash-rule {
+  width: 1px; height: 40px;
+  background: linear-gradient(to bottom, transparent, var(--champagne), transparent);
+  margin: 0.2rem 0;
+}
 .splash-sub {
-  font-size: 0.65rem; letter-spacing: 0.45em; text-transform: uppercase;
-  color: var(--text-dim); font-family: 'Jost', sans-serif;
+  font-size: clamp(0.5rem, 2.5vw, 0.62rem); letter-spacing: 0.35em; text-transform: uppercase;
+  color: var(--text-dim); font-family: 'Jost', sans-serif; text-align: center;
+  animation: splashFadeUp 0.8s 0.5s var(--transition) both;
 }
 .splash-wave {
-  width: 120px; height: 3px; position: relative; overflow: hidden;
+  width: 100px; height: 2px; position: relative; overflow: hidden;
   background: rgba(255,255,255,0.05); border-radius: 3px;
+  animation: splashFadeUp 0.8s 0.4s var(--transition) both;
 }
 .splash-wave-inner {
   position: absolute; left: -100%; top: 0; width: 100%; height: 100%;
-  background: linear-gradient(90deg, transparent, var(--wave), var(--champagne), transparent);
-  animation: splashWave 1.4s ease-in-out forwards;
+  background: linear-gradient(90deg, transparent, var(--champagne), var(--wave), transparent);
+  animation: splashWave 1.4s 0.3s ease-in-out forwards;
 }
 @keyframes splashWave {
   0%   { left: -100%; }
@@ -888,9 +911,13 @@ footer {
 
 <!-- SPLASH -->
 <div id="splash">
-  <div class="splash-logo">DUMSY<span>BROWN</span> MEDIA</div>
-  <div class="splash-sub">Photography · Videography · Drone · Accra, Ghana</div>
+  <div class="splash-logo-wrap">
+    <div class="splash-line1">DUMSY<span class="splash-accent">BROWN</span></div>
+    <div class="splash-line2">MEDIA</div>
+  </div>
+  <div class="splash-rule"></div>
   <div class="splash-wave"><div class="splash-wave-inner"></div></div>
+  <div class="splash-sub">Photography · Videography · Drone · Accra</div>
 </div>
 
 <!-- PAGE TRANSITION -->
